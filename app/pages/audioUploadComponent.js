@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Box, Button, Input } from "@mui/material";
+import { Box, Button, Input, Typography } from "@mui/material";
 import { storage } from "../../firestore";
 import { ref, uploadBytes, listAll } from "firebase/storage";
 
@@ -48,15 +48,30 @@ export function AudioUploadComponent() {
   };
 
   return (
-    <Box height={"200px"} width={"200px"}>
+    <Box
+      display="flex"
+      flexDirection="column"
+      alignItems="center"
+      justifyContent="center"
+      padding={3}
+      border={1}
+      borderColor="grey.300"
+      borderRadius={2}
+      width={300}
+      margin="auto"
+    >
+      <Typography variant="h6" gutterBottom>
+        Upload Audio File
+      </Typography>
       <Input
-        variant="outlined"
         type="file"
+        inputProps={{ accept: "audio/*" }}
         onChange={(event) => {
           setFile(event.target.files[0]);
         }}
-      ></Input>
-      <Button variant={"outlined"} onClick={UploadFile}>
+        sx={{ mb: 2 }}
+      />
+      <Button variant="contained" color="primary" onClick={UploadFile}>
         Upload File
       </Button>
     </Box>
